@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
+import 'package:lottie/lottie.dart';
 import 'package:whatsapp_clone_app/features/app/theme/style.dart';
 import 'package:whatsapp_clone_app/features/user/presentation/cubit/credential/credential_cubit.dart';
 
@@ -15,13 +15,11 @@ class OtpPage extends StatefulWidget {
 }
 
 class _OtpPageState extends State<OtpPage> {
-
-
   final TextEditingController _otpController = TextEditingController();
 
   @override
   void dispose() {
-      _otpController.dispose();
+    _otpController.dispose();
     super.dispose();
   }
 
@@ -47,16 +45,12 @@ class _OtpPageState extends State<OtpPage> {
                           color: tabColor),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    "Enter your OTP for the WhatsApp Clone Verification (so that you will be moved for the further steps to complete)",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 30,
+                  Lottie.asset(
+                    'animations/ottp.json', // Replace with your Lottie animation file path
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit
+                        .contain, // Adjust this based on your animation's requirements
                   ),
                   _pinCodeWidget(),
                   const SizedBox(
@@ -65,7 +59,6 @@ class _OtpPageState extends State<OtpPage> {
                 ],
               ),
             ),
-
             GestureDetector(
               onTap: _submitSmsCode,
               child: Container(
@@ -100,10 +93,8 @@ class _OtpPageState extends State<OtpPage> {
         children: <Widget>[
           PinCodeFields(
             controller: _otpController,
-
             length: 6,
             activeBorderColor: tabColor,
-
             onComplete: (String pinCode) {},
           ),
           const Text("Enter your 6 digit code")
@@ -112,9 +103,9 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  void _submitSmsCode(){
+  void _submitSmsCode() {
     print("otpCode ${_otpController.text}");
-    if (_otpController.text.isNotEmpty){
+    if (_otpController.text.isNotEmpty) {
       BlocProvider.of<CredentialCubit>(context)
           .submitSmsCode(smsCode: _otpController.text);
     }

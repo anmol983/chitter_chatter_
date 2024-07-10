@@ -13,11 +13,11 @@ class CredentialCubit extends Cubit<CredentialState> {
   final SignInWithPhoneNumberUseCase signInWithPhoneNumberUseCase;
   final VerifyPhoneNumberUseCase verifyPhoneNumberUseCase;
   final CreateUserUseCase createUserUseCase;
-  CredentialCubit({
-    required this.signInWithPhoneNumberUseCase,
-    required this.verifyPhoneNumberUseCase,
-    required this.createUserUseCase
-}) : super(CredentialInitial());
+  CredentialCubit(
+      {required this.signInWithPhoneNumberUseCase,
+      required this.verifyPhoneNumberUseCase,
+      required this.createUserUseCase})
+      : super(CredentialInitial());
 
   Future<void> submitVerifyPhoneNumber({required String phoneNumber}) async {
     try {
@@ -51,5 +51,4 @@ class CredentialCubit extends Cubit<CredentialState> {
       emit(CredentialFailure());
     }
   }
-
-  }
+}

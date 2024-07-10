@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -17,12 +16,11 @@ class InitialProfileSubmitPage extends StatefulWidget {
   const InitialProfileSubmitPage({super.key, required this.phoneNumber});
 
   @override
-  State<InitialProfileSubmitPage> createState() => _InitialProfileSubmitPageState();
+  State<InitialProfileSubmitPage> createState() =>
+      _InitialProfileSubmitPageState();
 }
 
 class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
-
-
   final TextEditingController _usernameController = TextEditingController();
   File? _image;
 
@@ -30,7 +28,8 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
 
   Future selectImage() async {
     try {
-      final pickedFile = await ImagePicker.platform.getImage(source: ImageSource.gallery);
+      final pickedFile =
+          await ImagePicker.platform.getImage(source: ImageSource.gallery);
 
       setState(() {
         if (pickedFile != null) {
@@ -39,8 +38,7 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
           print("no image has been selected");
         }
       });
-
-    } catch(e) {
+    } catch (e) {
       toast("some error occured $e");
     }
   }
@@ -52,11 +50,27 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
         child: Column(
           children: [
-            const SizedBox(height: 30,),
-            const Center(child: Text("Profile Info", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: tabColor),),),
-            const SizedBox(height: 10,),
-            const Text("Please provide your name and an optional profile photo", textAlign: TextAlign.center,style: TextStyle(fontSize: 15),),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
+            const Center(
+              child: Text(
+                "Profile Info",
+                style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.bold, color: tabColor),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Text(
+              "Please provide your name and an optional profile photo",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             GestureDetector(
               onTap: selectImage,
               child: SizedBox(
@@ -68,22 +82,24 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Container(
               height: 40,
               margin: const EdgeInsets.only(top: 1.5),
               decoration: const BoxDecoration(
-                  border: Border(
-                      bottom:
-                      BorderSide(color: tabColor, width: 1.5))),
+                  border:
+                      Border(bottom: BorderSide(color: tabColor, width: 1.5))),
               child: TextField(
                 controller: _usernameController,
                 decoration: const InputDecoration(
-                    hintText: "Username",
-                    border: InputBorder.none),
+                    hintText: "Username", border: InputBorder.none),
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             GestureDetector(
               onTap: submitProfileInfo,
               child: Container(
@@ -94,7 +110,13 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: const Center(
-                  child: Text("Next", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),),
+                  child: Text(
+                    "Next",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ),
             )
@@ -105,18 +127,15 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
   }
 
   void submitProfileInfo() {
-    if(_image != null) {
+    if (_image != null) {
       StorageProviderRemoteDataSource.uploadProfileImage(
           file: _image!,
           onComplete: (onProfileUpdateComplete) {
             setState(() {
               _isProfileUpdating = onProfileUpdateComplete;
             });
-          }
-      ).then((profileImageUrl) {
-        _profileInfo(
-            profileUrl: profileImageUrl
-        );
+          }).then((profileImageUrl) {
+        _profileInfo(profileUrl: profileImageUrl);
       });
     } else {
       _profileInfo(profileUrl: "");
@@ -127,14 +146,13 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
     if (_usernameController.text.isNotEmpty) {
       BlocProvider.of<CredentialCubit>(context).submitProfileInfo(
           user: UserEntity(
-            email: "",
-            username: _usernameController.text,
-            phoneNumber: widget.phoneNumber,
-            status: "Hey There! I'm using WhatsApp Clone",
-            isOnline: false,
-            profileUrl: profileUrl,
-          )
-      );
+        email: "",
+        username: _usernameController.text,
+        phoneNumber: widget.phoneNumber,
+        status: "Hey There! I'm using WhatsApp Clone",
+        isOnline: false,
+        profileUrl: profileUrl,
+      ));
     }
   }
 }

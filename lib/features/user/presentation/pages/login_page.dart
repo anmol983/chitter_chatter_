@@ -8,6 +8,7 @@ import 'package:whatsapp_clone_app/features/user/presentation/cubit/auth/auth_cu
 import 'package:whatsapp_clone_app/features/user/presentation/cubit/credential/credential_cubit.dart';
 import 'package:whatsapp_clone_app/features/user/presentation/pages/inital_profile_submit_page.dart';
 import 'package:whatsapp_clone_app/features/user/presentation/pages/otp_page.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -86,10 +87,12 @@ class _LoginPageState extends State<LoginPage> {
                           color: tabColor),
                     ),
                   ),
-                  const Text(
-                    "WhatsApp Clone will send you SMS message (carrier charges may apply) to verify your phone number. Enter the country code and phone number",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
+                  Lottie.asset(
+                    'animations/cal.json', // Replace with your Lottie animation file path
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit
+                        .contain, // Adjust this based on your animation's requirements
                   ),
                   const SizedBox(
                     height: 30,
