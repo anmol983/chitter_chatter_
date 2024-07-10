@@ -25,8 +25,4 @@ This **Chat App** is going to include the following features.
 
 
 
-Watch Flutter & Firebase Developer Bootcamp to learn software development best practices with flutter and become an in-demand Flutter Developer. 
 
-<h2>YouTube</h2>
-
-Link: https://www.youtube.com/playlist?list=PLbgNPmiSEwEa4AC4msITOYfY8WXOP2irn
