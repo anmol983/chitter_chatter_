@@ -21,4 +21,5 @@ const mobileChatBoxColor =
 const lightGreyColor = Color.fromRGBO(170, 200, 230, 1); // Light blueish grey
 const greyColor = Color.fromRGBO(100, 120, 140, 1); // Blueish grey
 const blackColor = Colors.black;
-const whiteColor = Colors.white;
+const whiteColor = Colors.white;//whiteColor
+
