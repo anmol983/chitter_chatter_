@@ -129,21 +129,6 @@ class _SettingsPageState extends State<SettingsPage> {
             height: 10,
           ),
           _settingsItemWidget(
-              title: "Account",
-              description: "Security applications, change number",
-              icon: Icons.key,
-              onTap: () {}),
-          _settingsItemWidget(
-              title: "Privacy",
-              description: "Block contacts, disappearing messages",
-              icon: Icons.lock,
-              onTap: () {}),
-          _settingsItemWidget(
-              title: "Chats",
-              description: "Theme, wallpapers, chat history",
-              icon: Icons.message,
-              onTap: () {}),
-          _settingsItemWidget(
               title: "Logout",
               description: "Logout from WhatsApp Clone",
               icon: Icons.exit_to_app,
@@ -161,41 +146,43 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  _settingsItemWidget(
-      {String? title,
-      String? description,
-      IconData? icon,
-      VoidCallback? onTap}) {
+  Widget _settingsItemWidget({
+    required String title,
+    required String description,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Row(
         children: [
           SizedBox(
-              width: 80,
-              height: 80,
-              child: Icon(
-                icon,
-                color: greyColor,
-                size: 25,
-              )),
+            width: 80,
+            height: 80,
+            child: Icon(
+              icon,
+              color: greyColor,
+              size: 25,
+            ),
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "$title",
+                  title,
                   style: const TextStyle(fontSize: 17),
                 ),
                 const SizedBox(
                   height: 3,
                 ),
                 Text(
-                  "$description",
+                  description,
                   style: const TextStyle(color: greyColor),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

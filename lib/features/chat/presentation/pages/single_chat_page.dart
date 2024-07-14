@@ -221,20 +221,6 @@ class _SingleChatPageState extends State<SingleChatPage> {
             const SizedBox(
               width: 25,
             ),
-            const Icon(
-              Icons.call,
-              size: 22,
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            const Icon(
-              Icons.more_vert,
-              size: 22,
-            ),
-            const SizedBox(
-              width: 15,
-            ),
           ],
         ),
         body: BlocBuilder<MessageCubit, MessageState>(

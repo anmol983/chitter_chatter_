@@ -77,9 +77,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
           colorScheme: ColorScheme.fromSeed(
-              seedColor: tabColor,
-              brightness: Brightness.dark
-          ),
+              seedColor: tabColor, brightness: Brightness.dark),
           scaffoldBackgroundColor: backgroundColor,
           dialogBackgroundColor: appBarColor,
           appBarTheme: const AppBarTheme(
