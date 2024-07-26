@@ -32,10 +32,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
-  TabController? _tabController;
-  int _currentTabIndex = 0;
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -44,18 +42,10 @@ class _HomePageState extends State<HomePage>
         .getMyCallHistory(uid: widget.uid);
 
     WidgetsBinding.instance.addObserver(this);
-    _tabController = TabController(length: 3, vsync: this);
-
-    _tabController!.addListener(() {
-      setState(() {
-        _currentTabIndex = _tabController!.index;
-      });
-    });
 
     if (widget.index != null) {
       setState(() {
-        _currentTabIndex = widget.index!;
-        _tabController!.animateTo(1);
+        _currentIndex = widget.index!;
       });
     }
     super.initState();
@@ -64,7 +54,6 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    _tabController?.dispose();
     super.dispose();
   }
 
@@ -144,7 +133,7 @@ class _HomePageState extends State<HomePage>
           return Scaffold(
             appBar: AppBar(
               title: const Text(
-                "WhatsApp",
+                "Chitter-chatter",
                 style: TextStyle(
                     fontSize: 20,
                     color: greyColor,
@@ -153,11 +142,6 @@ class _HomePageState extends State<HomePage>
               actions: [
                 Row(
                   children: [
-                    const Icon(
-                      Icons.camera_alt_outlined,
-                      color: greyColor,
-                      size: 28,
-                    ),
                     const SizedBox(
                       width: 25,
                     ),
@@ -190,40 +174,33 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
               ],
-              bottom: TabBar(
-                labelColor: tabColor,
-                unselectedLabelColor: greyColor,
-                indicatorColor: tabColor,
-                controller: _tabController,
-                tabs: const [
-                  Tab(
-                    child: Text(
-                      "Chats",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  Tab(
-                    child: Text(
-                      "Status",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  Tab(
-                    child: Text(
-                      "Calls",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
-              ),
             ),
             floatingActionButton: switchFloatingActionButtonOnTabIndex(
-                _currentTabIndex, currentUser),
-            body: TabBarView(
-              controller: _tabController,
+                _currentIndex, currentUser),
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: _currentIndex,
+              onTap: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.chat),
+                  label: 'Chats',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add),
+                  label: 'Status',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.call),
+                  label: 'Calls',
+                ),
+              ],
+            ),
+            body: IndexedStack(
+              index: _currentIndex,
               children: [
                 ChatPage(uid: widget.uid),
                 StatusPage(currentUser: currentUser),
@@ -248,16 +225,25 @@ class _HomePageState extends State<HomePage>
       case 0:
         {
           return FloatingActionButton(
-            backgroundColor: tabColor,
+            backgroundColor: tabColor, // Use your custom color
             onPressed: () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => const ContactsPage()));
-              Navigator.pushNamed(context, PageConst.contactUsersPage,
-                  arguments: widget.uid);
+              Navigator.pushNamed(
+                context,
+                PageConst.contactUsersPage,
+                arguments: widget.uid,
+              );
             },
-            child: const Icon(
-              Icons.message,
+            child: Icon(
+              Icons.message, // Use a different icon if desired
               color: Colors.white,
+              size: 30.0, // Adjust size for better visibility
             ),
+            elevation: 12.0, // Adds a shadow for a 3D effect
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                  16.0), // Rounded corners for a modern look
+            ),
+            tooltip: 'Contact Users', // Tooltip for better user experience
           );
         }
       case 1:
@@ -288,24 +274,13 @@ class _HomePageState extends State<HomePage>
               );
             },
             child: const Icon(
-              Icons.camera_alt,
+              Icons.face,
               color: Colors.white,
             ),
           );
         }
       case 2:
-        {
-          return FloatingActionButton(
-            backgroundColor: tabColor,
-            onPressed: () {
-              Navigator.pushNamed(context, PageConst.callContactsPage);
-            },
-            child: const Icon(
-              Icons.add_call,
-              color: Colors.white,
-            ),
-          );
-        }
+        {}
       default:
         {
           return FloatingActionButton(

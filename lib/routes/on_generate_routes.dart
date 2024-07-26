@@ -46,7 +46,7 @@ class OnGenerateRoute {
         }
       case PageConst.callContactsPage:
         {
-          return materialPageBuilder(const CallContactsPage());
+          return materialPageBuilder(const () as Widget);
         }
       case PageConst.myStatusPage:
         {

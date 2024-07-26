@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:whatsapp_clone_app/features/app/const/page_const.dart';
 import 'package:whatsapp_clone_app/features/app/global/widgets/dialog_widget.dart';
 import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
@@ -30,91 +31,96 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: BlocBuilder<GetSingleUserCubit, GetSingleUserState>(
-              builder: (context, state) {
-                if (state is GetSingleUserLoaded) {
-                  final singleUser = state.singleUser;
+          Card(
+            elevation: 2,
+            margin: const EdgeInsets.all(10),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: BlocBuilder<GetSingleUserCubit, GetSingleUserState>(
+                builder: (context, state) {
+                  if (state is GetSingleUserLoaded) {
+                    final singleUser = state.singleUser;
+                    return Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, PageConst.editProfilePage,
+                                arguments: singleUser);
+                          },
+                          child: SizedBox(
+                            width: 65,
+                            height: 65,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(32.5),
+                              child: profileWidget(
+                                  imageUrl: singleUser.profileUrl),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${singleUser.username}",
+                                style: const TextStyle(fontSize: 15),
+                              ),
+                              Text(
+                                "${singleUser.status}",
+                                style: const TextStyle(color: greyColor),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  }
                   return Row(
                     children: [
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, PageConst.editProfilePage,
-                              arguments: singleUser);
+                              context, PageConst.editProfilePage);
                         },
                         child: SizedBox(
                           width: 65,
                           height: 65,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(32.5),
-                            child:
-                                profileWidget(imageUrl: singleUser.profileUrl),
+                            child: profileWidget(),
                           ),
                         ),
                       ),
                       const SizedBox(
                         width: 10,
                       ),
-                      Expanded(
+                      const Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${singleUser.username}",
-                              style: const TextStyle(fontSize: 15),
+                              "...",
+                              style: TextStyle(fontSize: 15),
                             ),
                             Text(
-                              "${singleUser.status}",
-                              style: const TextStyle(color: greyColor),
+                              "...",
+                              style: TextStyle(color: greyColor),
                             )
                           ],
                         ),
                       ),
+                      const Icon(
+                        Icons.qr_code_sharp,
+                        color: tabColor,
+                      )
                     ],
                   );
-                }
-                return Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, PageConst.editProfilePage);
-                      },
-                      child: SizedBox(
-                        width: 65,
-                        height: 65,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(32.5),
-                          child: profileWidget(),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "...",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                          Text(
-                            "...",
-                            style: TextStyle(color: greyColor),
-                          )
-                        ],
-                      ),
-                    ),
-                    const Icon(
-                      Icons.qr_code_sharp,
-                      color: tabColor,
-                    )
-                  ],
-                );
-              },
+                },
+              ),
             ),
           ),
           const SizedBox(
@@ -128,9 +134,16 @@ class _SettingsPageState extends State<SettingsPage> {
           const SizedBox(
             height: 10,
           ),
+          Lottie.asset(
+            'animations/logout.json', // Replace with your Lottie animation file path
+            width: 200,
+            height: 200,
+            fit: BoxFit
+                .contain, // Adjust this based on your animation's requirements
+          ),
           _settingsItemWidget(
               title: "Logout",
-              description: "Logout from WhatsApp Clone",
+              description: "Logout from Chitter-chatter",
               icon: Icons.exit_to_app,
               onTap: () {
                 displayAlertDialog(context, onTap: () {

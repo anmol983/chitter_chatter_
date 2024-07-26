@@ -17,41 +17,41 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-
   @override
   void initState() {
-    BlocProvider.of<ChatCubit>(context).getMyChat(chat: ChatEntity(senderUid: widget.uid));
+    BlocProvider.of<ChatCubit>(context)
+        .getMyChat(chat: ChatEntity(senderUid: widget.uid));
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: BlocBuilder<ChatCubit, ChatState>(
-          builder: (context, state) {
-            if(state is ChatLoaded) {
-              final myChat = state.chatContacts;
+    return Scaffold(body: BlocBuilder<ChatCubit, ChatState>(
+      builder: (context, state) {
+        if (state is ChatLoaded) {
+          final myChat = state.chatContacts;
 
-              if(myChat.isEmpty) {
-                return const Center(
-                  child: Text("No Conversation Yet"),
-                );
-              }
+          if (myChat.isEmpty) {
+            return const Center(
+              child: Text("No Conversation Yet"),
+            );
+          }
 
-              return ListView.builder(itemCount: myChat.length, itemBuilder: (context, index) {
-
+          return ListView.builder(
+              itemCount: myChat.length,
+              itemBuilder: (context, index) {
                 final chat = myChat[index];
                 return GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, PageConst.singleChatPage,
                         arguments: MessageEntity(
-                          senderUid: chat.senderUid,
-                          recipientUid:chat.recipientUid,
-                          senderName: chat.senderName,
-                          recipientName: chat.recipientName,
-                          senderProfile: chat.senderProfile,
-                          recipientProfile: chat.recipientProfile,
-                          uid: widget.uid
-                    ));
+                            senderUid: chat.senderUid,
+                            recipientUid: chat.recipientUid,
+                            senderName: chat.senderName,
+                            recipientName: chat.recipientName,
+                            senderProfile: chat.senderProfile,
+                            recipientProfile: chat.recipientProfile,
+                            uid: widget.uid));
                   },
                   child: ListTile(
                     leading: SizedBox(
@@ -63,7 +63,11 @@ class _ChatPageState extends State<ChatPage> {
                       ),
                     ),
                     title: Text("${chat.recipientName}"),
-                    subtitle: Text("${chat.recentTextMessage}", maxLines: 1, overflow: TextOverflow.ellipsis,),
+                    subtitle: Text(
+                      "${chat.recentTextMessage}",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     trailing: Text(
                       DateFormat.jm().format(chat.createdAt!.toDate()),
                       style: const TextStyle(color: greyColor, fontSize: 13),
@@ -71,15 +75,13 @@ class _ChatPageState extends State<ChatPage> {
                   ),
                 );
               });
-
-            }
-            return const Center(
-              child: CircularProgressIndicator(
-                color: tabColor,
-              ),
-            );
-          },
-        )
-    );
+        }
+        return const Center(
+          child: CircularProgressIndicator(
+            color: tabColor,
+          ),
+        );
+      },
+    ));
   }
 }

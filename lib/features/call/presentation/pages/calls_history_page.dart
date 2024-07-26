@@ -27,7 +27,9 @@ class CallHistoryPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Text(
-                    callHistory.isNotEmpty? "Recent" : "No Recent History",
+                    callHistory.isNotEmpty
+                        ? "Call-history"
+                        : "No Recent History",
                     style: const TextStyle(
                         fontSize: 15,
                         color: greyColor,
@@ -53,28 +55,36 @@ class CallHistoryPage extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
                             child: profileWidget(
-                                imageUrl: singleCallHistory.callerId == currentUser.uid? singleCallHistory.receiverProfileUrl : singleCallHistory.callerProfileUrl),
+                                imageUrl: singleCallHistory.callerId ==
+                                        currentUser.uid
+                                    ? singleCallHistory.receiverProfileUrl
+                                    : singleCallHistory.callerProfileUrl),
                           ),
                         ),
                         title: Text(
-                          "${singleCallHistory.callerId == currentUser.uid? singleCallHistory.receiverName  :singleCallHistory.callerName}",
+                          "${singleCallHistory.callerId == currentUser.uid ? singleCallHistory.receiverName : singleCallHistory.callerName}",
                           style: const TextStyle(fontSize: 16),
                         ),
                         subtitle: Row(
                           children: [
                             Icon(
-                              singleCallHistory.callerId == currentUser.uid? Icons.call_made : Icons.call_received,
-                              color: singleCallHistory.isMissed == true? Colors.red : Colors.green,
+                              singleCallHistory.callerId == currentUser.uid
+                                  ? Icons.call_made
+                                  : Icons.call_received,
+                              color: singleCallHistory.isMissed == true
+                                  ? Colors.red
+                                  : Colors.green,
                               size: 19,
                             ),
                             const SizedBox(
                               width: 10,
                             ),
-                            Text(formatDateTime(singleCallHistory.createdAt!.toDate())),
+                            Text(formatDateTime(
+                                singleCallHistory.createdAt!.toDate())),
                           ],
                         ),
                         trailing: const Icon(
-                          Icons.call,
+                          Icons.video_camera_front_sharp,
                           color: tabColor,
                         ),
                       );
