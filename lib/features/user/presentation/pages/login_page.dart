@@ -69,14 +69,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget _bodyWidget() {
     return Scaffold(
       body: Container(
+        alignment: Alignment.center,
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 40,
+                    height: 60,
                   ),
                   const Center(
                     child: Text(
@@ -88,14 +91,15 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Lottie.asset(
-                    'animations/cal.json', // Replace with your Lottie animation file path
+                    'animations/callp2.json', // Replace with your Lottie animation file path
                     width: 200,
+
                     height: 200,
                     fit: BoxFit
                         .contain, // Adjust this based on your animation's requirements
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 40,
                   ),
                   InternationalPhoneNumberInput(
                     onInputChanged: (PhoneNumber number) {
@@ -111,10 +115,11 @@ class _LoginPageState extends State<LoginPage> {
                     inputDecoration: const InputDecoration(
                       hintText: 'Phone Number',
                       border: OutlineInputBorder(
-                        borderSide: BorderSide(color: tabColor, width: 1.5),
+                        borderSide: BorderSide(color: Colors.white, width: 1.5),
                       ),
                     ),
-                    selectorTextStyle: const TextStyle(color: Colors.black),
+                    selectorTextStyle: const TextStyle(
+                        color: Color.fromARGB(255, 239, 237, 237)),
                   ),
                 ],
               ),
@@ -122,12 +127,26 @@ class _LoginPageState extends State<LoginPage> {
             GestureDetector(
               onTap: _submitVerifyPhoneNumber,
               child: Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                width: 120,
+                width: 200,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: tabColor,
-                  borderRadius: BorderRadius.circular(5),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.purple, // Start color of the gradient
+                      Colors.deepPurple, // End color of the gradient
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  borderRadius: BorderRadius.circular(20), // Rounded corners
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.purple.withOpacity(0.6),
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 3), // Positioning the shadow
+                    ),
+                  ],
                 ),
                 child: const Center(
                   child: Text(

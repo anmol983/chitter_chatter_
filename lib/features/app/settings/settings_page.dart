@@ -26,134 +26,138 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey.shade900,
       appBar: AppBar(
-        title: const Text("Settings"),
+        backgroundColor: Colors.blueGrey.shade800,
+        title: const Text(
+          "Settings",
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        elevation: 4,
       ),
       body: Column(
         children: [
-          Card(
-            elevation: 2,
-            margin: const EdgeInsets.all(10),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: BlocBuilder<GetSingleUserCubit, GetSingleUserState>(
-                builder: (context, state) {
-                  if (state is GetSingleUserLoaded) {
-                    final singleUser = state.singleUser;
-                    return Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, PageConst.editProfilePage,
-                                arguments: singleUser);
-                          },
-                          child: SizedBox(
-                            width: 65,
-                            height: 65,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(32.5),
-                              child: profileWidget(
-                                  imageUrl: singleUser.profileUrl),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${singleUser.username}",
-                                style: const TextStyle(fontSize: 15),
-                              ),
-                              Text(
-                                "${singleUser.status}",
-                                style: const TextStyle(color: greyColor),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  }
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: BlocBuilder<GetSingleUserCubit, GetSingleUserState>(
+              builder: (context, state) {
+                if (state is GetSingleUserLoaded) {
+                  final singleUser = state.singleUser;
                   return Row(
                     children: [
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, PageConst.editProfilePage);
+                            context,
+                            PageConst.editProfilePage,
+                            arguments: singleUser,
+                          );
                         },
-                        child: SizedBox(
-                          width: 65,
-                          height: 65,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(32.5),
-                            child: profileWidget(),
-                          ),
+                        child: CircleAvatar(
+                          radius: 32,
+                          backgroundImage: NetworkImage(singleUser.profileUrl!),
                         ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Expanded(
+                      const SizedBox(width: 15),
+                      Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "...",
-                              style: TextStyle(fontSize: 15),
+                              singleUser.username!,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
                             ),
+                            const SizedBox(height: 4),
                             Text(
-                              "...",
-                              style: TextStyle(color: greyColor),
-                            )
+                              singleUser.status!,
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.7),
+                                fontSize: 14,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      const Icon(
-                        Icons.qr_code_sharp,
-                        color: tabColor,
-                      )
                     ],
                   );
-                },
-              ),
+                }
+                return Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, PageConst.editProfilePage);
+                      },
+                      child: CircleAvatar(
+                        radius: 32,
+                        backgroundColor: Colors.grey.shade700,
+                        child: profileWidget(),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    const Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "...",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            "...",
+                            style: TextStyle(color: greyColor),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(
+                      Icons.qr_code_2,
+                      color: Colors.white.withOpacity(0.8),
+                      size: 30,
+                    ),
+                  ],
+                );
+              },
             ),
           ),
-          const SizedBox(
-            height: 2,
-          ),
-          Container(
-            width: double.infinity,
-            height: 0.5,
-            color: greyColor.withOpacity(.4),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 30),
           Lottie.asset(
             'animations/logout.json', // Replace with your Lottie animation file path
-            width: 200,
-            height: 200,
-            fit: BoxFit
-                .contain, // Adjust this based on your animation's requirements
+            width: 150,
+            height: 150,
+            fit: BoxFit.contain,
           ),
+          const SizedBox(height: 20),
           _settingsItemWidget(
-              title: "Logout",
-              description: "Logout from Chitter-chatter",
-              icon: Icons.exit_to_app,
-              onTap: () {
-                displayAlertDialog(context, onTap: () {
-                  BlocProvider.of<AuthCubit>(context).loggedOut();
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, PageConst.welcomePage, (route) => false);
-                },
-                    confirmTitle: "Logout",
-                    content: "Are you sure you want to logout?");
-              }),
+            title: "Logout",
+            description: "Logout from Chitter-chatter",
+            icon: Icons.exit_to_app,
+            onTap: () {
+              displayAlertDialog(context, onTap: () {
+                BlocProvider.of<AuthCubit>(context).loggedOut();
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  PageConst.welcomePage,
+                  (route) => false,
+                );
+              },
+                  confirmTitle: "Logout",
+                  content: "Are you sure you want to logout?");
+            },
+          ),
         ],
       ),
     );
@@ -167,36 +171,50 @@ class _SettingsPageState extends State<SettingsPage> {
   }) {
     return GestureDetector(
       onTap: onTap,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 80,
-            height: 80,
-            child: Icon(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.blueGrey.shade600,
+              width: 0.5,
+            ),
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(
               icon,
-              color: greyColor,
-              size: 25,
+              color: Colors.lightBlueAccent,
+              size: 28,
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontSize: 17),
-                ),
-                const SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  description,
-                  style: const TextStyle(color: greyColor),
-                ),
-              ],
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.7),
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -29,7 +29,7 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Select Contacts"),
+        title: const Text("Pick Contacts"),
       ),
       body: BlocBuilder<GetSingleUserCubit, GetSingleUserState>(
         builder: (context, state) {

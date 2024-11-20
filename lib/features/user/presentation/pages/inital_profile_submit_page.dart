@@ -47,11 +47,12 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        alignment: Alignment.center,
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
         child: Column(
           children: [
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
             const Center(
               child: Text(
@@ -69,7 +70,7 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
               style: TextStyle(fontSize: 15),
             ),
             const SizedBox(
-              height: 30,
+              height: 150,
             ),
             GestureDetector(
               onTap: selectImage,
@@ -103,11 +104,26 @@ class _InitialProfileSubmitPageState extends State<InitialProfileSubmitPage> {
             GestureDetector(
               onTap: submitProfileInfo,
               child: Container(
-                width: 150,
+                width: 200,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: tabColor,
-                  borderRadius: BorderRadius.circular(5),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.purple, // Start color of the gradient
+                      Colors.deepPurple, // End color of the gradient
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  borderRadius: BorderRadius.circular(20), // Rounded corners
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.purple.withOpacity(0.6),
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 3), // Positioning the shadow
+                    ),
+                  ],
                 ),
                 child: const Center(
                   child: Text(

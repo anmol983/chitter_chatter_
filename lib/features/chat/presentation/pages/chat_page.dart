@@ -33,7 +33,7 @@ class _ChatPageState extends State<ChatPage> {
 
           if (myChat.isEmpty) {
             return const Center(
-              child: Text("No Conversation Yet"),
+              child: Text("Start a new conversation"),
             );
           }
 

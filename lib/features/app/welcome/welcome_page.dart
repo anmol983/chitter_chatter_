@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone_app/features/app/theme/style.dart';
 import 'package:whatsapp_clone_app/features/user/presentation/pages/login_page.dart';
-
 import 'package:lottie/lottie.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -19,15 +18,17 @@ class WelcomePage extends StatelessWidget {
               child: Text(
                 "Welcome to Chitter-chatter",
                 style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold, color: tabColor),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: tabColor,
+                ),
               ),
             ),
             Lottie.asset(
               'animations/anime.json', // Replace with your Lottie animation file path
               width: 200,
               height: 200,
-              fit: BoxFit
-                  .contain, // Adjust this based on your animation's requirements
+              fit: BoxFit.contain,
             ),
             Column(
               children: [
@@ -42,30 +43,49 @@ class WelcomePage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
                   },
                   child: Container(
                     width: 200,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: tabColor,
-                      borderRadius: BorderRadius.circular(5),
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.purple, // Start color of the gradient
+                          Colors.deepPurple, // End color of the gradient
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                      borderRadius:
+                          BorderRadius.circular(20), // Rounded corners
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.purple.withOpacity(0.6),
+                          blurRadius: 10,
+                          spreadRadius: 1,
+                          offset: const Offset(0, 3), // Positioning the shadow
+                        ),
+                      ],
                     ),
                     child: const Center(
                       child: Text(
                         "CONTINUE",
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

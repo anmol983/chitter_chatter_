@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:whatsapp_clone_app/features/app/const/app_const.dart';
 import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
 import 'package:whatsapp_clone_app/features/user/domain/entities/user_entity.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/get_single_user/get_single_user_cubit.dart';
 import 'package:whatsapp_clone_app/features/user/presentation/cubit/user/user_cubit.dart';
 import 'package:whatsapp_clone_app/storage/storage_provider.dart';
 
@@ -29,23 +26,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Future selectImage() async {
     try {
-      final pickedFile = await ImagePicker.platform.getImage(source: ImageSource.gallery);
+      final pickedFile =
+          await ImagePicker.platform.getImage(source: ImageSource.gallery);
 
       setState(() {
         if (pickedFile != null) {
           _image = File(pickedFile.path);
         } else {
-          print("no image has been selected");
+          print("No image selected");
         }
       });
     } catch (e) {
-      toast("some error occured $e");
+      toast("An error occurred: $e");
     }
   }
 
   @override
   void initState() {
-    _usernameController = TextEditingController(text: widget.currentUser.username);
+    _usernameController =
+        TextEditingController(text: widget.currentUser.username);
     _aboutController = TextEditingController(text: widget.currentUser.status);
     super.initState();
   }
@@ -60,10 +59,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Profile"),
+      backgroundColor: const Color(0xFF0B1F3A), // Dark navy blue background
+      appBar: AppBar(
+        title: const Text(
+          "Edit Profile",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        body: SingleChildScrollView(
+        backgroundColor: const Color(0xFF102A43), // Dark navy blue
+        elevation: 1,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
               Center(
@@ -72,15 +80,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     Container(
                       width: 150,
                       height: 150,
-                      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      margin: const EdgeInsets.symmetric(vertical: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(75),
+                        border: Border.all(color: Colors.white, width: 4),
+                      ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(75),
-                        child: profileWidget(imageUrl: widget.currentUser.profileUrl, image: _image),
+                        child: profileWidget(
+                          imageUrl: widget.currentUser.profileUrl,
+                          image: _image,
+                        ),
                       ),
                     ),
                     Positioned(
-                      bottom: 15,
-                      right: 15,
+                      bottom: 10,
+                      right: 10,
                       child: GestureDetector(
                         onTap: selectImage,
                         child: Container(
@@ -88,11 +103,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
-                            color: tabColor,
+                            color: Colors.deepPurple,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 5,
+                                spreadRadius: 2,
+                              )
+                            ],
                           ),
                           child: const Icon(
                             Icons.camera_alt_rounded,
-                            color: blackColor,
+                            color: Colors.white,
                             size: 30,
                           ),
                         ),
@@ -101,132 +123,153 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              const SizedBox(height: 20),
+              _profileInputField(
+                controller: _usernameController,
+                title: "Username",
+                hint: "Enter your username",
+                icon: Icons.person,
               ),
-              _profileItem(
-                  controller: _usernameController,
-                  title: "Name",
-                  description: "Enter username",
-                  icon: Icons.person,
-                  onTap: () {}),
-              _profileItem(
-                  controller: _aboutController,
-                  title: "About",
-                  description: "Hey there I'm using WhatsApp",
-                  icon: Icons.info_outline,
-                  onTap: () {}),
-              _settingsItemWidget(
-                  title: "Phone", description: "${widget.currentUser.phoneNumber}", icon: Icons.phone, onTap: () {}),
+              const SizedBox(height: 20),
+              _profileInputField(
+                controller: _aboutController,
+                title: "About",
+                hint: "Say something about yourself",
+                icon: Icons.info_outline,
+              ),
+              const SizedBox(height: 20),
+              _settingsItem(
+                title: "Phone Number",
+                description: widget.currentUser.phoneNumber!,
+                icon: Icons.phone,
+              ),
               const SizedBox(height: 40),
               GestureDetector(
                 onTap: submitProfileInfo,
                 child: Container(
-                  margin: const EdgeInsets.only(bottom: 20),
-                  width: 120,
+                  width: 200,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: tabColor,
-                    borderRadius: BorderRadius.circular(5),
+                    gradient: const LinearGradient(
+                      colors: [
+                        Colors.purple, // Start color of the gradient
+                        Colors.deepPurple, // End color of the gradient
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                    borderRadius: BorderRadius.circular(20), // Rounded corners
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.purple.withOpacity(0.6),
+                        blurRadius: 10,
+                        spreadRadius: 1,
+                        offset: const Offset(0, 3), // Positioning the shadow
+                      ),
+                    ],
                   ),
-                  child: _isProfileUpdating == true
+                  child: _isProfileUpdating
                       ? const Center(
-                          child: SizedBox(
-                            width: 25,
-                            height: 25,
-                            child: CircularProgressIndicator(
-                              color: whiteColor,
-                            ),
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
                           ),
                         )
                       : const Center(
                           child: Text(
-                            "Save",
-                            style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),
+                            "Save Changes",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                 ),
               ),
             ],
           ),
-        ));
-  }
-
-  _profileItem(
-      {String? title, String? description, IconData? icon, VoidCallback? onTap, TextEditingController? controller}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children: [
-          SizedBox(
-              width: 80,
-              height: 80,
-              child: Icon(
-                icon,
-                color: greyColor,
-                size: 25,
-              )),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "$title",
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: TextFormField(
-                    controller: controller,
-                    decoration: InputDecoration(
-                        hintText: description!,
-                        suffixIcon: const Icon(
-                          Icons.edit_rounded,
-                          color: tabColor,
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
 
-  _settingsItemWidget({String? title, String? description, IconData? icon, VoidCallback? onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children: [
-          SizedBox(
-              width: 80,
-              height: 80,
-              child: Icon(
-                icon,
-                color: greyColor,
-                size: 25,
-              )),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "$title",
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+  Widget _profileInputField({
+    required TextEditingController controller,
+    required String title,
+    required String hint,
+    required IconData icon,
+  }) {
+    return Row(
+      children: [
+        Icon(icon, color: Colors.deepPurple, size: 28),
+        const SizedBox(width: 15),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
                 ),
-                const SizedBox(
-                  height: 3,
+              ),
+              TextFormField(
+                controller: controller,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: hint,
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.deepPurple),
+                  ),
                 ),
-                Text(
-                  "$description",
-                  style: const TextStyle(fontSize: 17),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _settingsItem({
+    required String title,
+    required String description,
+    required IconData icon,
+  }) {
+    return Row(
+      children: [
+        Icon(icon, color: Colors.deepPurple, size: 28),
+        const SizedBox(width: 15),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white70,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                description,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -260,7 +303,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         profileUrl: profileUrl,
       ))
           .then((value) {
-        toast("Profile updated");
+        toast("Profile updated successfully!");
       });
     }
   }

@@ -62,12 +62,26 @@ class _OtpPageState extends State<OtpPage> {
             GestureDetector(
               onTap: _submitSmsCode,
               child: Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                width: 120,
+                width: 200,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: tabColor,
-                  borderRadius: BorderRadius.circular(5),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.purple, // Start color of the gradient
+                      Colors.deepPurple, // End color of the gradient
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  borderRadius: BorderRadius.circular(20), // Rounded corners
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.purple.withOpacity(0.6),
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 3), // Positioning the shadow
+                    ),
+                  ],
                 ),
                 child: const Center(
                   child: Text(

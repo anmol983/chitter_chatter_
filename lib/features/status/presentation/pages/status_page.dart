@@ -157,198 +157,286 @@ class _StatusPageState extends State<StatusPage> {
   _bodyWidget(List<StatusEntity> statuses, UserEntity currentUser,
       {StatusEntity? myStatus}) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+      backgroundColor: Colors.blueGrey.shade900,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  myStatus != null
-                      ? GestureDetector(
-                          onTap: () {
-                            _eitherShowOrUploadSheet(myStatus, currentUser);
-                          },
-                          child: Container(
-                            width: 55,
-                            height: 55,
-                            margin: const EdgeInsets.all(12.5),
-                            child: CustomPaint(
-                              painter: StatusDottedBordersWidget(
-                                  isMe: true,
-                                  numberOfStories: myStatus.stories!.length,
-                                  spaceLength: 4,
-                                  images: myStatus.stories!,
-                                  uid: widget.currentUser.uid),
-                              child: Container(
-                                margin: const EdgeInsets.all(3),
-                                width: 55,
-                                height: 55,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: profileWidget(
-                                      imageUrl: myStatus.imageUrl),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
-                          width: 60,
-                          height: 60,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child:
-                                profileWidget(imageUrl: currentUser.profileUrl),
-                          ),
-                        ),
-                  myStatus != null
-                      ? Container()
-                      : Positioned(
-                          right: 10,
-                          bottom: 8,
-                          child: GestureDetector(
-                            onTap: () {
-                              _eitherShowOrUploadSheet(myStatus, currentUser);
-                            },
-                            child: Container(
-                              width: 25,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                  color: tabColor,
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(
-                                      width: 2, color: backgroundColor)),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.add,
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                ],
-              ),
-              Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "My story",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(
-                    height: 2,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      _eitherShowOrUploadSheet(myStatus, currentUser);
-                    },
-                    child: const Text(
-                      "Tap to add your story.",
-                      style: TextStyle(color: greyColor),
-                    ),
-                  )
-                ],
-              )),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, PageConst.myStatusPage,
-                      arguments: myStatus);
-                },
-                child: Icon(
-                  Icons.more_horiz,
-                  color: greyColor.withOpacity(.5),
+              // Header Section
+              const Text(
+                "Stories",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
-              const SizedBox(
-                width: 10,
+              const SizedBox(height: 10),
+
+              // User's Status with Elevated Card Style
+              Card(
+                color: Colors.blueGrey.shade800,
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  child: Row(
+                    children: [
+                      Stack(
+                        children: [
+                          myStatus != null
+                              ? GestureDetector(
+                                  onTap: () {
+                                    _eitherShowOrUploadSheet(
+                                        myStatus, currentUser);
+                                  },
+                                  child: Container(
+                                    width: 65,
+                                    height: 65,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(32.5),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.lightBlueAccent
+                                              .withOpacity(0.3),
+                                          blurRadius: 8,
+                                          offset: Offset(0, 4),
+                                        ),
+                                      ],
+                                    ),
+                                    child: CustomPaint(
+                                      painter: StatusDottedBordersWidget(
+                                        isMe: true,
+                                        numberOfStories:
+                                            myStatus.stories!.length,
+                                        spaceLength: 4,
+                                        images: myStatus.stories!,
+                                        uid: currentUser.uid,
+                                      ),
+                                      child: Container(
+                                        margin: const EdgeInsets.all(3),
+                                        width: 55,
+                                        height: 55,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          child: profileWidget(
+                                              imageUrl: myStatus.imageUrl),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  width: 65,
+                                  height: 65,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(32.5),
+                                    color: Colors.blueGrey.shade700,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 8,
+                                        offset: Offset(0, 4),
+                                      ),
+                                    ],
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: profileWidget(
+                                        imageUrl: currentUser.profileUrl),
+                                  ),
+                                ),
+                          myStatus == null
+                              ? Positioned(
+                                  right: 8,
+                                  bottom: 4,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      _eitherShowOrUploadSheet(
+                                          myStatus, currentUser);
+                                    },
+                                    child: Container(
+                                      width: 24,
+                                      height: 24,
+                                      decoration: BoxDecoration(
+                                        color: Colors.lightBlueAccent,
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                            width: 2,
+                                            color: Colors.blueGrey.shade900),
+                                      ),
+                                      child: const Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 18,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                        ],
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "My Story",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            GestureDetector(
+                              onTap: () {
+                                _eitherShowOrUploadSheet(myStatus, currentUser);
+                              },
+                              child: const Text(
+                                "Tap to add your story",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            PageConst.myStatusPage,
+                            arguments: myStatus,
+                          );
+                        },
+                        child: Icon(
+                          Icons.more_horiz,
+                          color: Colors.white.withOpacity(0.6),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              // Recent Posts Header with Accent Background
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey.shade800,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.update,
+                        color: Colors.lightBlueAccent, size: 20),
+                    const SizedBox(width: 8),
+                    const Text(
+                      "Recent Posts",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.lightBlueAccent,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              // Recent Statuses with Card Style
+              ListView.builder(
+                itemCount: statuses.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final status = statuses[index];
+                  List<StoryItem> stories = status.stories!
+                      .map((storyItem) => StoryItem(
+                            url: storyItem.url!,
+                            viewers: storyItem.viewers,
+                            type: StoryItemTypeExtension.fromString(
+                                storyItem.type!),
+                          ))
+                      .toList();
+
+                  return Card(
+                    color: Colors.blueGrey.shade800,
+                    elevation: 3,
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ListTile(
+                      onTap: () {
+                        _showStatusImageViewBottomModalSheet(
+                          status: status,
+                          stories: stories,
+                        );
+                      },
+                      leading: SizedBox(
+                        width: 55,
+                        height: 55,
+                        child: CustomPaint(
+                          painter: StatusDottedBordersWidget(
+                            isMe: false,
+                            numberOfStories: status.stories!.length,
+                            spaceLength: 4,
+                            images: status.stories!,
+                            uid: currentUser.uid,
+                          ),
+                          child: Container(
+                            margin: const EdgeInsets.all(3),
+                            width: 55,
+                            height: 55,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: profileWidget(imageUrl: status.imageUrl),
+                            ),
+                          ),
+                        ),
+                      ),
+                      title: Text(
+                        status.username!,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                      subtitle: Text(
+                        formatDateTime(status.createdAt!.toDate()),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white70,
+                        ),
+                      ),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Colors.lightBlueAccent,
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10.0),
-            child: Row(
-              children: [
-                Icon(Icons.update,
-                    color: greyColor,
-                    size: 18), // Add an icon for visual appeal
-                SizedBox(width: 8), // Space between the icon and text
-                Text(
-                  "Recent Posts",
-                  style: TextStyle(
-                    fontSize: 16, // Slightly larger font size
-                    color: greyColor,
-                    fontWeight: FontWeight.bold, // Use bold weight
-                    letterSpacing: 0.5, // Add some letter spacing
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          ListView.builder(
-              itemCount: statuses.length,
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              itemBuilder: (context, index) {
-                final status = statuses[index];
-
-                List<StoryItem> stories = [];
-
-                for (StatusImageEntity storyItem in status.stories!) {
-                  stories.add(StoryItem(
-                      url: storyItem.url!,
-                      viewers: storyItem.viewers,
-                      type:
-                          StoryItemTypeExtension.fromString(storyItem.type!)));
-                }
-
-                return ListTile(
-                  onTap: () {
-                    _showStatusImageViewBottomModalSheet(
-                        status: status, stories: stories);
-                  },
-                  leading: SizedBox(
-                    width: 55,
-                    height: 55,
-                    child: CustomPaint(
-                      painter: StatusDottedBordersWidget(
-                          isMe: false,
-                          numberOfStories: status.stories!.length,
-                          spaceLength: 4,
-                          images: status.stories,
-                          uid: widget.currentUser.uid),
-                      child: Container(
-                        margin: const EdgeInsets.all(3),
-                        width: 55,
-                        height: 55,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: profileWidget(imageUrl: status.imageUrl),
-                        ),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    "${status.username}",
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  subtitle: Text(formatDateTime(status.createdAt!.toDate())),
-                );
-              })
-        ],
+        ),
       ),
-    ));
+    );
   }
 
   Future _showStatusImageViewBottomModalSheet(

@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 "Chitter-chatter",
                 style: TextStyle(
                     fontSize: 20,
-                    color: greyColor,
+                    color: Colors.white,
                     fontWeight: FontWeight.w600),
               ),
               actions: [
@@ -145,7 +145,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                     const SizedBox(
                       width: 25,
                     ),
-                    const Icon(Icons.search, color: greyColor, size: 28),
                     const SizedBox(
                       width: 10,
                     ),
@@ -190,7 +189,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   label: 'Chats',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
+                  icon: Icon(Icons.camera),
                   label: 'Status',
                 ),
                 BottomNavigationBarItem(
@@ -234,7 +233,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               );
             },
             child: Icon(
-              Icons.message, // Use a different icon if desired
+              Icons
+                  .connect_without_contact_rounded, // Use a different icon if desired
               color: Colors.white,
               size: 30.0, // Adjust size for better visibility
             ),
@@ -273,9 +273,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 },
               );
             },
-            child: const Icon(
-              Icons.face,
-              color: Colors.white,
+            child: Center(
+              child: const Icon(
+                Icons.face,
+                color: Colors.white,
+              ),
             ),
           );
         }
@@ -287,7 +289,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             backgroundColor: tabColor,
             onPressed: () {},
             child: const Icon(
-              Icons.message,
+              Icons.add,
               color: Colors.white,
             ),
           );
