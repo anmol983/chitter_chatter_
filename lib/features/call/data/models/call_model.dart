@@ -1,10 +1,7 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:whatsapp_clone_app/features/call/domain/entities/call_entity.dart';
+import 'package:chitter_chatter/features/call/domain/entities/call_entity.dart';
 
 class CallModel extends CallEntity {
-
   final String? callId;
   final String? callerId;
   final String? callerName;
@@ -17,33 +14,31 @@ class CallModel extends CallEntity {
   final bool? isMissed;
   final Timestamp? createdAt;
 
-  CallModel(
-      {
-        this.callId,
-        this.callerId,
-        this.callerName,
-        this.callerProfileUrl,
-        this.receiverId,
-        this.receiverName,
-        this.receiverProfileUrl,
-        this.isCallDialed,
-        this.isMissed,
-        this.createdAt,
-      }) : super(
-    callerId: callerId,
-    callerName: callerName,
-    callerProfileUrl: callerProfileUrl,
-    callId: callId,
-    isCallDialed: isCallDialed,
-    receiverId: receiverId,
-    receiverName: receiverName,
-    receiverProfileUrl: receiverProfileUrl,
-    isMissed: isMissed,
-    createdAt: createdAt,
-  );
+  CallModel({
+    this.callId,
+    this.callerId,
+    this.callerName,
+    this.callerProfileUrl,
+    this.receiverId,
+    this.receiverName,
+    this.receiverProfileUrl,
+    this.isCallDialed,
+    this.isMissed,
+    this.createdAt,
+  }) : super(
+          callerId: callerId,
+          callerName: callerName,
+          callerProfileUrl: callerProfileUrl,
+          callId: callId,
+          isCallDialed: isCallDialed,
+          receiverId: receiverId,
+          receiverName: receiverName,
+          receiverProfileUrl: receiverProfileUrl,
+          isMissed: isMissed,
+          createdAt: createdAt,
+        );
 
   factory CallModel.fromSnapshot(DocumentSnapshot snapshot) {
-
     final snap = snapshot.data() as Map<String, dynamic>;
 
     return CallModel(
@@ -61,15 +56,15 @@ class CallModel extends CallEntity {
   }
 
   Map<String, dynamic> toDocument() => {
-    "receiverProfileUrl": receiverProfileUrl,
-    "receiverName": receiverName,
-    "receiverId": receiverId,
-    "isCallDialed": isCallDialed,
-    "callId": callId,
-    "callerProfileUrl": callerProfileUrl,
-    "callerName": callerName,
-    "callerId": callerId,
-    "isMissed": isMissed,
-    "createdAt": createdAt,
-  };
+        "receiverProfileUrl": receiverProfileUrl,
+        "receiverName": receiverName,
+        "receiverId": receiverId,
+        "isCallDialed": isCallDialed,
+        "callId": callId,
+        "callerProfileUrl": callerProfileUrl,
+        "callerName": callerName,
+        "callerId": callerId,
+        "isMissed": isMissed,
+        "createdAt": createdAt,
+      };
 }

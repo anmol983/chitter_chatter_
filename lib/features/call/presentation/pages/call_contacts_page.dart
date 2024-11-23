@@ -1,7 +1,7 @@
 
 // import 'package:flutter/material.dart';
-// import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
-// import 'package:whatsapp_clone_app/features/app/theme/style.dart';
+// import 'package:chitter_chatter/features/app/global/widgets/profile_widget.dart';
+// import 'package:chitter_chatter/features/app/theme/style.dart';
 
 // class CallContactsPage extends StatefulWidget {
 //   const CallContactsPage({super.key});

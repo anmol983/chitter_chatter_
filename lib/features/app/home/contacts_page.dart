@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:whatsapp_clone_app/features/app/const/page_const.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/chat/domain/entities/message_entity.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/get_single_user/get_single_user_cubit.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/user/user_cubit.dart';
+import 'package:chitter_chatter/features/app/const/page_const.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/chat/domain/entities/message_entity.dart';
+import 'package:chitter_chatter/features/user/presentation/cubit/get_single_user/get_single_user_cubit.dart';
+import 'package:chitter_chatter/features/user/presentation/cubit/user/user_cubit.dart';
 
 import '../global/widgets/profile_widget.dart';
 

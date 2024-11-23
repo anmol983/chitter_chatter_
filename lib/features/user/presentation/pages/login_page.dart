@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:whatsapp_clone_app/features/app/const/app_const.dart';
-import 'package:whatsapp_clone_app/features/app/home/home_page.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/auth/auth_cubit.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/credential/credential_cubit.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/pages/inital_profile_submit_page.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/pages/otp_page.dart';
+import 'package:chitter_chatter/features/app/const/app_const.dart';
+import 'package:chitter_chatter/features/app/home/home_page.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/user/presentation/cubit/auth/auth_cubit.dart';
+import 'package:chitter_chatter/features/user/presentation/cubit/credential/credential_cubit.dart';
+import 'package:chitter_chatter/features/user/presentation/pages/inital_profile_submit_page.dart';
+import 'package:chitter_chatter/features/user/presentation/pages/otp_page.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {

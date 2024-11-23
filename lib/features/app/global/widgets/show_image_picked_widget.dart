@@ -1,11 +1,11 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/app/global/widgets/profile_widget.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
 
-showImagePickedBottomModalSheet(BuildContext context, {File? file, VoidCallback? onTap, String? recipientName}) {
+showImagePickedBottomModalSheet(BuildContext context,
+    {File? file, VoidCallback? onTap, String? recipientName}) {
   showModalBottomSheet(
     isScrollControlled: true,
     isDismissible: false,
@@ -23,43 +23,71 @@ showImagePickedBottomModalSheet(BuildContext context, {File? file, VoidCallback?
                 image: file,
               ),
             ),
-
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(onTap: () {
-                      Navigator.pop(context);
-                    },child: const Icon(Icons.close_outlined, size: 30, color: Colors.white,)),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.close_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        )),
                     const Row(
                       children: [
-                        Icon(Icons.crop, size: 30, color: Colors.white,),
-                        SizedBox(width: 20,),
-                        Icon(Icons.emoji_emotions_outlined, size: 30, color: Colors.white,),
-                        SizedBox(width: 20,),
-                        Icon(Icons.text_fields, size: 30, color: Colors.white,),
-                        SizedBox(width: 20,),
-                        Icon(Icons.edit_outlined, size: 30, color: Colors.white,),
+                        Icon(
+                          Icons.crop,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(
+                          Icons.emoji_emotions_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(
+                          Icons.text_fields,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(
+                          Icons.edit_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        ),
                       ],
                     )
                   ],
                 ),
               ),
             ),
-
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: appBarColor,

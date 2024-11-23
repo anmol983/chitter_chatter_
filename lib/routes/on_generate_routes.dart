@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone_app/features/app/const/page_const.dart';
-import 'package:whatsapp_clone_app/features/app/home/contacts_page.dart';
-import 'package:whatsapp_clone_app/features/app/settings/settings_page.dart';
-import 'package:whatsapp_clone_app/features/call/domain/entities/call_entity.dart';
-import 'package:whatsapp_clone_app/features/call/presentation/pages/call_contacts_page.dart';
-import 'package:whatsapp_clone_app/features/call/presentation/pages/call_page.dart';
-import 'package:whatsapp_clone_app/features/chat/domain/entities/message_entity.dart';
-import 'package:whatsapp_clone_app/features/chat/presentation/pages/single_chat_page.dart';
-import 'package:whatsapp_clone_app/features/status/domain/entities/status_entity.dart';
-import 'package:whatsapp_clone_app/features/status/presentation/pages/my_status_page.dart';
-import 'package:whatsapp_clone_app/features/user/domain/entities/user_entity.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/pages/edit_profile_page.dart';
+import 'package:chitter_chatter/features/app/const/page_const.dart';
+import 'package:chitter_chatter/features/app/home/contacts_page.dart';
+import 'package:chitter_chatter/features/app/settings/settings_page.dart';
+import 'package:chitter_chatter/features/call/domain/entities/call_entity.dart';
+import 'package:chitter_chatter/features/call/presentation/pages/call_contacts_page.dart';
+import 'package:chitter_chatter/features/call/presentation/pages/call_page.dart';
+import 'package:chitter_chatter/features/chat/domain/entities/message_entity.dart';
+import 'package:chitter_chatter/features/chat/presentation/pages/single_chat_page.dart';
+import 'package:chitter_chatter/features/status/domain/entities/status_entity.dart';
+import 'package:chitter_chatter/features/status/presentation/pages/my_status_page.dart';
+import 'package:chitter_chatter/features/user/domain/entities/user_entity.dart';
+import 'package:chitter_chatter/features/user/presentation/pages/edit_profile_page.dart';
 
 class OnGenerateRoute {
   static Route<dynamic>? route(RouteSettings settings) {

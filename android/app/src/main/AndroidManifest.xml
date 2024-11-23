@@ -15,7 +15,7 @@
 
 
     <application
-        android:label="whatsapp_clone_app"
+        android:label="chitter_chatter"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

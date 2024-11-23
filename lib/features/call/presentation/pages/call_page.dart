@@ -1,10 +1,10 @@
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/call/domain/entities/call_entity.dart';
-import 'package:whatsapp_clone_app/features/call/presentation/cubits/agora/agora_cubit.dart';
-import 'package:whatsapp_clone_app/features/call/presentation/cubits/call/call_cubit.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/call/domain/entities/call_entity.dart';
+import 'package:chitter_chatter/features/call/presentation/cubits/agora/agora_cubit.dart';
+import 'package:chitter_chatter/features/call/presentation/cubits/call/call_cubit.dart';
 
 class CallPage extends StatefulWidget {
   final CallEntity callEntity;

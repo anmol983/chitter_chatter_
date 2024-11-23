@@ -1,5 +1,4 @@
-
-import 'package:whatsapp_clone_app/features/user/domain/repository/user_repository.dart';
+import 'package:chitter_chatter/features/user/domain/repository/user_repository.dart';
 
 class SignOutUseCase {
   final UserRepository repository;
@@ -9,5 +8,4 @@ class SignOutUseCase {
   Future<void> call() async {
     return repository.signOut();
   }
-
 }

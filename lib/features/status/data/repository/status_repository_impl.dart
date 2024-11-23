@@ -1,7 +1,6 @@
-
-import 'package:whatsapp_clone_app/features/status/data/remote/status_remote_data_source.dart';
-import 'package:whatsapp_clone_app/features/status/domain/entities/status_entity.dart';
-import 'package:whatsapp_clone_app/features/status/domain/repository/status_repository.dart';
+import 'package:chitter_chatter/features/status/data/remote/status_remote_data_source.dart';
+import 'package:chitter_chatter/features/status/domain/entities/status_entity.dart';
+import 'package:chitter_chatter/features/status/domain/repository/status_repository.dart';
 
 class StatusRepositoryImpl implements StatusRepository {
   final StatusRemoteDataSource remoteDataSource;
@@ -9,27 +8,35 @@ class StatusRepositoryImpl implements StatusRepository {
   StatusRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<void> createStatus(StatusEntity status) async => remoteDataSource.createStatus(status);
+  Future<void> createStatus(StatusEntity status) async =>
+      remoteDataSource.createStatus(status);
 
   @override
-  Future<void> deleteStatus(StatusEntity status) async => remoteDataSource.deleteStatus(status);
+  Future<void> deleteStatus(StatusEntity status) async =>
+      remoteDataSource.deleteStatus(status);
 
   @override
-  Stream<List<StatusEntity>> getMyStatus(String uid) => remoteDataSource.getMyStatus(uid);
+  Stream<List<StatusEntity>> getMyStatus(String uid) =>
+      remoteDataSource.getMyStatus(uid);
 
   @override
-  Future<List<StatusEntity>> getMyStatusFuture(String uid) async => remoteDataSource.getMyStatusFuture(uid);
+  Future<List<StatusEntity>> getMyStatusFuture(String uid) async =>
+      remoteDataSource.getMyStatusFuture(uid);
 
   @override
-  Stream<List<StatusEntity>> getStatuses(StatusEntity status) => remoteDataSource.getStatuses(status);
+  Stream<List<StatusEntity>> getStatuses(StatusEntity status) =>
+      remoteDataSource.getStatuses(status);
 
   @override
-  Future<void> seenStatusUpdate(String statusId, int imageIndex, String userId) async => remoteDataSource.seenStatusUpdate(statusId, imageIndex, userId);
+  Future<void> seenStatusUpdate(
+          String statusId, int imageIndex, String userId) async =>
+      remoteDataSource.seenStatusUpdate(statusId, imageIndex, userId);
 
   @override
-  Future<void> updateOnlyImageStatus(StatusEntity status) async => remoteDataSource.updateOnlyImageStatus(status);
+  Future<void> updateOnlyImageStatus(StatusEntity status) async =>
+      remoteDataSource.updateOnlyImageStatus(status);
 
   @override
-  Future<void> updateStatus(StatusEntity status) async => remoteDataSource.updateStatus(status);
-
+  Future<void> updateStatus(StatusEntity status) async =>
+      remoteDataSource.updateStatus(status);
 }

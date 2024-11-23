@@ -1,13 +1,7 @@
-
-
-
-
-
-import 'package:whatsapp_clone_app/features/call/domain/entities/call_entity.dart';
-import 'package:whatsapp_clone_app/features/call/domain/repository/call_repository.dart';
+import 'package:chitter_chatter/features/call/domain/entities/call_entity.dart';
+import 'package:chitter_chatter/features/call/domain/repository/call_repository.dart';
 
 class EndCallUseCase {
-
   final CallRepository repository;
 
   const EndCallUseCase({required this.repository});

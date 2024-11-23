@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:whatsapp_clone_app/features/app/const/page_const.dart';
-import 'package:whatsapp_clone_app/features/app/global/widgets/dialog_widget.dart';
-import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/auth/auth_cubit.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/get_single_user/get_single_user_cubit.dart';
+import 'package:chitter_chatter/features/app/const/page_const.dart';
+import 'package:chitter_chatter/features/app/global/widgets/dialog_widget.dart';
+import 'package:chitter_chatter/features/app/global/widgets/profile_widget.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/user/presentation/cubit/auth/auth_cubit.dart';
+import 'package:chitter_chatter/features/user/presentation/cubit/get_single_user/get_single_user_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
   final String uid;

@@ -1,6 +1,5 @@
-
-import 'package:whatsapp_clone_app/features/user/domain/entities/user_entity.dart';
-import 'package:whatsapp_clone_app/features/user/domain/repository/user_repository.dart';
+import 'package:chitter_chatter/features/user/domain/entities/user_entity.dart';
+import 'package:chitter_chatter/features/user/domain/repository/user_repository.dart';
 
 class GetAllUsersUseCase {
   final UserRepository repository;
@@ -10,5 +9,4 @@ class GetAllUsersUseCase {
   Stream<List<UserEntity>> call() {
     return repository.getAllUsers();
   }
-
 }

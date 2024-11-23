@@ -1,7 +1,6 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:whatsapp_clone_app/features/status/domain/entities/status_image_entity.dart';
+import 'package:chitter_chatter/features/status/domain/entities/status_image_entity.dart';
 
 class StatusEntity extends Equatable {
   final String? statusId;
@@ -15,8 +14,7 @@ class StatusEntity extends Equatable {
   final List<StatusImageEntity>? stories;
 
   StatusEntity(
-      {
-        this.statusId,
+      {this.statusId,
       this.imageUrl,
       this.uid,
       this.username,
@@ -24,19 +22,18 @@ class StatusEntity extends Equatable {
       this.createdAt,
       this.phoneNumber,
       this.caption,
-      this.stories
-      });
+      this.stories});
 
   @override
   List<Object?> get props => [
-    statusId,
-    imageUrl,
-    uid,
-    username,
-    profileUrl,
-    createdAt,
-    phoneNumber,
-    caption,
-    stories
-  ];
+        statusId,
+        imageUrl,
+        uid,
+        username,
+        profileUrl,
+        createdAt,
+        phoneNumber,
+        caption,
+        stories
+      ];
 }

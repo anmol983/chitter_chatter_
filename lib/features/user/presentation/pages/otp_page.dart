@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 import 'package:lottie/lottie.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/credential/credential_cubit.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/user/presentation/cubit/credential/credential_cubit.dart';
 
 import 'inital_profile_submit_page.dart';
 

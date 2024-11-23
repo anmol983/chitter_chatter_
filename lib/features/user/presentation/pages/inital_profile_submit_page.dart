@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:whatsapp_clone_app/features/app/const/app_const.dart';
-import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
-import 'package:whatsapp_clone_app/features/app/home/home_page.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/user/domain/entities/user_entity.dart';
-import 'package:whatsapp_clone_app/features/user/presentation/cubit/credential/credential_cubit.dart';
-import 'package:whatsapp_clone_app/storage/storage_provider.dart';
+import 'package:chitter_chatter/features/app/const/app_const.dart';
+import 'package:chitter_chatter/features/app/global/widgets/profile_widget.dart';
+import 'package:chitter_chatter/features/app/home/home_page.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/user/domain/entities/user_entity.dart';
+import 'package:chitter_chatter/features/user/presentation/cubit/credential/credential_cubit.dart';
+import 'package:chitter_chatter/storage/storage_provider.dart';
 
 class InitialProfileSubmitPage extends StatefulWidget {
   final String phoneNumber;

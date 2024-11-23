@@ -1,5 +1,4 @@
-
-import 'package:whatsapp_clone_app/features/user/domain/repository/user_repository.dart';
+import 'package:chitter_chatter/features/user/domain/repository/user_repository.dart';
 
 class VerifyPhoneNumberUseCase {
   final UserRepository repository;
@@ -9,5 +8,4 @@ class VerifyPhoneNumberUseCase {
   Future<void> call(String phoneNumber) async {
     return repository.verifyPhoneNumber(phoneNumber);
   }
-
 }

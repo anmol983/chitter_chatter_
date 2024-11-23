@@ -1,8 +1,6 @@
-
-import 'package:whatsapp_clone_app/features/status/domain/entities/status_entity.dart';
+import 'package:chitter_chatter/features/status/domain/entities/status_entity.dart';
 
 abstract class StatusRepository {
-
   Future<void> createStatus(StatusEntity status);
   Future<void> updateStatus(StatusEntity status);
   Future<void> updateOnlyImageStatus(StatusEntity status);

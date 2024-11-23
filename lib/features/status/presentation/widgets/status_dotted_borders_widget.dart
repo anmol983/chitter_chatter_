@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/status/domain/entities/status_image_entity.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/status/domain/entities/status_image_entity.dart';
 
 class StatusDottedBordersWidget extends CustomPainter {
   //number of stories
@@ -17,11 +17,12 @@ class StatusDottedBordersWidget extends CustomPainter {
   //start of the arc painting in degree(0-360)
   double startOfArcInDegree = 0;
 
-  StatusDottedBordersWidget({required this.numberOfStories,
-    this.spaceLength = 10,
-    this.uid,
-    this.images,
-   required this.isMe });
+  StatusDottedBordersWidget(
+      {required this.numberOfStories,
+      this.spaceLength = 10,
+      this.uid,
+      this.images,
+      required this.isMe});
 
   //drawArc deals with rads, easier for me to use degrees
   //so this takes a degree and change it to rad
@@ -44,9 +45,11 @@ class StatusDottedBordersWidget extends CustomPainter {
         Offset(size.width / 2, size.height / 2),
         min(size.width / 2, size.height / 2),
         Paint()
-          ..color =
-          isMe ? greyColor.withOpacity(.5) : images![0].viewers!.contains(
-              uid) ? greyColor.withOpacity(.5) : tabColor
+          ..color = isMe
+              ? greyColor.withOpacity(.5)
+              : images![0].viewers!.contains(uid)
+                  ? greyColor.withOpacity(.5)
+                  : tabColor
           ..strokeWidth = 2.5
           ..style = PaintingStyle.stroke,
       );
@@ -75,10 +78,12 @@ class StatusDottedBordersWidget extends CustomPainter {
           inRads(arcLength),
           false,
           Paint()
-          //here you can compare your SEEN story index with the arc index to make it grey
-            ..color =
-            isMe ? greyColor.withOpacity(.5) : images![i].viewers!.contains(
-                uid) ? greyColor.withOpacity(.5) : tabColor
+            //here you can compare your SEEN story index with the arc index to make it grey
+            ..color = isMe
+                ? greyColor.withOpacity(.5)
+                : images![i].viewers!.contains(uid)
+                    ? greyColor.withOpacity(.5)
+                    : tabColor
             ..strokeWidth = 2.5
             ..style = PaintingStyle.stroke,
         );

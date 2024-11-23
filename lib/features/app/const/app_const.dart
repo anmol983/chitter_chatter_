@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:giphy_picker/giphy_picker.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
 
 void toast(String message) {
   Fluttertoast.showToast(

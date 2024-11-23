@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:whatsapp_clone_app/features/app/global/date/date_formats.dart';
-import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/call/presentation/cubits/my_call_history/my_call_history_cubit.dart';
-import 'package:whatsapp_clone_app/features/user/domain/entities/user_entity.dart';
+import 'package:chitter_chatter/features/app/global/date/date_formats.dart';
+import 'package:chitter_chatter/features/app/global/widgets/profile_widget.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/call/presentation/cubits/my_call_history/my_call_history_cubit.dart';
+import 'package:chitter_chatter/features/user/domain/entities/user_entity.dart';
 
 class CallHistoryPage extends StatelessWidget {
   final UserEntity currentUser;

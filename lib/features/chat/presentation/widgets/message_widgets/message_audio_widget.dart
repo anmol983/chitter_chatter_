@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
 
 class MessageAudioWidget extends StatefulWidget {
   final String? audioUrl;
@@ -29,9 +28,7 @@ class _MessageAudioWidgetState extends State<MessageAudioWidget> {
                 isPlaying = false;
               });
             } else {
-              await audioPlayer
-                  .setUrl(widget.audioUrl!)
-                  .then((value) async {
+              await audioPlayer.setUrl(widget.audioUrl!).then((value) async {
                 setState(() {
                   isPlaying = true;
                 });
@@ -77,8 +74,7 @@ class _MessageAudioWidgetState extends State<MessageAudioWidget> {
                       height: 2,
                       child: const LinearProgressIndicator(
                         value: 0,
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.white),
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                         backgroundColor: greyColor,
                       ),
                     );

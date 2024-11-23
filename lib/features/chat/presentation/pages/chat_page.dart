@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:whatsapp_clone_app/features/app/const/page_const.dart';
-import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/chat/domain/entities/chat_entity.dart';
-import 'package:whatsapp_clone_app/features/chat/domain/entities/message_entity.dart';
-import 'package:whatsapp_clone_app/features/chat/presentation/cubit/chat/chat_cubit.dart';
+import 'package:chitter_chatter/features/app/const/page_const.dart';
+import 'package:chitter_chatter/features/app/global/widgets/profile_widget.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/chat/domain/entities/chat_entity.dart';
+import 'package:chitter_chatter/features/chat/domain/entities/message_entity.dart';
+import 'package:chitter_chatter/features/chat/presentation/cubit/chat/chat_cubit.dart';
 
 class ChatPage extends StatefulWidget {
   final String uid;

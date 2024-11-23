@@ -1,10 +1,7 @@
-
-
-import 'package:whatsapp_clone_app/features/user/domain/entities/contact_entity.dart';
-import 'package:whatsapp_clone_app/features/user/domain/entities/user_entity.dart';
+import 'package:chitter_chatter/features/user/domain/entities/contact_entity.dart';
+import 'package:chitter_chatter/features/user/domain/entities/user_entity.dart';
 
 abstract class UserRemoteDataSource {
-
   Future<void> verifyPhoneNumber(String phoneNumber);
   Future<void> signInWithPhoneNumber(String smsPinCode);
 

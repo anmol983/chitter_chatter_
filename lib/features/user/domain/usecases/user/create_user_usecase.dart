@@ -1,6 +1,5 @@
-
-import 'package:whatsapp_clone_app/features/user/domain/entities/user_entity.dart';
-import 'package:whatsapp_clone_app/features/user/domain/repository/user_repository.dart';
+import 'package:chitter_chatter/features/user/domain/entities/user_entity.dart';
+import 'package:chitter_chatter/features/user/domain/repository/user_repository.dart';
 
 class CreateUserUseCase {
   final UserRepository repository;
@@ -10,5 +9,4 @@ class CreateUserUseCase {
   Future<void> call(UserEntity user) async {
     return repository.createUser(user);
   }
-
 }

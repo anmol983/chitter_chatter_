@@ -1,7 +1,7 @@
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:whatsapp_clone_app/features/app/const/agora_config_const.dart';
+import 'package:chitter_chatter/features/app/const/agora_config_const.dart';
 
 part 'agora_state.dart';
 

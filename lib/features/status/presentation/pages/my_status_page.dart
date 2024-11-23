@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_time_ago/get_time_ago.dart';
-import 'package:whatsapp_clone_app/features/app/global/widgets/profile_widget.dart';
-import 'package:whatsapp_clone_app/features/app/home/home_page.dart';
-import 'package:whatsapp_clone_app/features/app/theme/style.dart';
-import 'package:whatsapp_clone_app/features/status/domain/entities/status_entity.dart';
-import 'package:whatsapp_clone_app/features/status/presentation/cubit/status/status_cubit.dart';
-import 'package:whatsapp_clone_app/features/status/presentation/widgets/delete_status_update_alert.dart';
+import 'package:chitter_chatter/features/app/global/widgets/profile_widget.dart';
+import 'package:chitter_chatter/features/app/home/home_page.dart';
+import 'package:chitter_chatter/features/app/theme/style.dart';
+import 'package:chitter_chatter/features/status/domain/entities/status_entity.dart';
+import 'package:chitter_chatter/features/status/presentation/cubit/status/status_cubit.dart';
+import 'package:chitter_chatter/features/status/presentation/widgets/delete_status_update_alert.dart';
 
 class MyStatusPage extends StatefulWidget {
   final StatusEntity status;
